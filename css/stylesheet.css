@@ -1,0 +1,303 @@
+*{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing:	border-box;
+    border: none;
+}
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-family: arial, helvetica, sans-serif;
+	font-size: 100%;
+	font-weight: normal;
+	vertical-align: baseline;
+	background: transparent;
+}
+body{
+	line-height: 1;
+	background: #fff;
+}
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section{
+	display: block;
+}
+li{
+	list-style-type: none;
+}
+blockquote, q{
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after{
+	content: '';
+	content: none;
+}
+a{
+	text-decoration: underline;
+	margin: 0;
+	padding: 0;
+	color: #000;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+a:hover{
+	text-decoration: none;
+}
+/* change colors to suit your needs */
+ins{
+	background-color: #ff9;
+	color: #000;
+	text-decoration: none;
+}
+/* change colors to suit your needs */
+mark{
+	background-color: #ff9;
+	color: #000;
+	font-style: italic;
+	font-weight: bold;
+}
+del{
+	text-decoration: line-through;
+}
+abbr[title], dfn[title]{
+	border-bottom: 0.063rem dotted;
+	cursor: help;
+}
+table{
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+hr{
+	display: block;
+	height: 0.063rem;
+	border: 0;
+	border-top: 0.063rem solid #cccccc;
+	margin: 1rem 0;
+	padding: 0;
+}
+input, select{
+	vertical-align: middle;
+}
+img{
+	max-width: 100%;
+	height: auto;
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+}
+/* end of stylesheet reset */
+#content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../images/wedding-rings-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    opacity: .8;
+    height: 100vh;
+}
+#content h1{
+	text-align: center;
+	margin: 0;
+	padding: .1rem;
+    line-height: 4rem;
+	color: #000;
+	font-size: 4rem;
+	font-family: 'IM Fell English SC', cursive; /* Google Font */
+}
+#content h1 span{
+    line-height: 2.5rem;
+    font-size: 2.5rem;
+	font-family: 'DIM Fell English SC', cursive; /* Google Font */
+}
+#content p.lead{
+    font-size: 2.5rem;
+    font-weight: bold;
+	font-family: 'IM Fell English SC', cursive; /* Google Font */
+    color: #000;
+}
+#content p.date{
+    margin: .5rem 0;
+    padding: .7rem 1.5rem;
+    font-size: 2.2rem;
+    font-weight: bold;
+	font-family: 'IM Fell English SC', cursive; /* Google Font */
+    color: #fff;
+    border: .3rem solid #d4af37;
+    border-radius: 2.5rem;
+    background: #000;
+}
+#content p.date span{
+    font-size: 2rem;
+    font-weight: normal;
+    color: #d4af37;
+}
+#content p.footer{
+    margin: .2rem 0 0 0;
+    font-size: 1.2rem;
+	font-family: 'IM Fell English SC', cursive; /* Google Font */
+    color: #000;
+}
+#content p.footer a{
+    text-decoration: underline;
+    color: #000;
+}
+#content p.footer a:hover{
+    text-decoration: none;
+}
+/* start of countdown timer styles */
+#content .timer{
+    width: 40rem;
+    margin: 0 auto;
+    padding: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+#content .timer div{
+    text-align: center;
+    margin: .2rem;
+    padding: 1.5rem .2rem;
+    color: #d8d8d8;
+	font-family: 'IM Fell English SC', cursive; /* Google Font */
+    width: 9.375rem;
+    height: 9.375rem;
+    border: 0.313rem solid #d4af37;
+    border-radius: 100%;
+    background: #000;
+}
+#content .timer div span{
+    display: block;
+}
+#content .timer div span.time{
+    font-family: 'Sigmar One', cursive;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #d4af37;
+}
+#content .timer div span.text{
+	font-family: 'IM Fell English SC', cursive; /* Google Font */
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: #fff;
+}
+/* end of countdown timer styles */
+/* start of styles for the social media icons */
+#content #follow{
+    margin: .5rem 0 0 0;
+	padding: 0;
+}
+#content #follow a img{
+	margin: 0 0 0 0.313rem;
+	padding: 0;
+	border: .3rem solid #d4af37;
+	border-radius: 100%;
+}
+#content #follow a img:first-of-type{
+    margin: 0;
+}
+/* end of styles for the social media icons */
+/* start of footer styles */
+#content p.footer{
+    margin: 0;
+    padding: .5rem;
+    color: #000;
+	font-family: 'IM Fell English SC', cursive; /* Google Font */
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+/* end of footer styles */
+@media(max-width: 50rem){ /* 800px */
+    #content h1{
+        line-height: 3.5rem;
+        font-size: 3.5rem;
+    }
+    #content h1 span{
+        line-height: 2.5rem;
+        font-size: 2.5rem;
+    }
+    #content p.lead{
+        font-size: 2rem;
+    }
+    #content p.date{
+        margin: .3rem 0;
+        font-size: 2rem;
+    }
+    #content p.date span{
+        font-size: 1.5rem;
+    }
+    #content .timer div{
+        width: 7.813rem;
+        height: 7.813rem;
+    }
+    #content .timer div span.time{
+        font-size: 2.2rem;
+    }
+    #content .timer div span.text{
+        font-size: 1.7rem;
+    }
+}
+@media(max-width: 43.75rem){ /* 700px */
+    #content p.date{
+        margin: .3rem 0;
+        font-size: 1.5rem;
+    }
+    #content p.date span{
+        font-size: 1.2rem;
+    }
+    #content .timer{
+                width: 19.55rem;
+    }
+    #content .timer div{
+        width: 6.875rem;
+        height: 6.875rem;
+    }
+    #content .timer div span.time{
+        font-size: 1.8rem;
+    }
+    #content .timer div span.text{
+        font-size: 1.5rem;
+    }
+}
+@media(max-width: 31.25rem){ /* 500px */
+    #content h1{
+        line-height: 2.5rem;
+        font-size: 2.5rem;
+    }
+    #content h1 span{
+        line-height: 1.5rem;
+        font-size: 1.5rem;
+    }
+    #content p.lead{
+        font-size: 1.5rem;
+    }
+    #content p.date{
+        margin: 1.3rem 0;
+        font-size: 1.5rem;
+    }
+    #content p.date span{
+        font-size: 1.2rem;
+    }
+    #content p.footer{
+        font-size: 1.2rem;
+    }
+}
