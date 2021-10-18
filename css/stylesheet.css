@@ -133,13 +133,13 @@ img{
     color: #000;
 }
 #content p.date{
-    margin: .5rem 0;
+    margin: 1.3rem 0 .3em 0;
     padding: .7rem 1.5rem;
     font-size: 2.2rem;
     font-weight: bold;
 	font-family: 'IM Fell English SC', cursive; /* Google Font */
     color: #fff;
-    border: .3rem solid #d4af37;
+    border: .2rem solid #d4af37;
     border-radius: 2.5rem;
     background: #000;
 }
@@ -181,7 +181,7 @@ img{
 	font-family: 'IM Fell English SC', cursive; /* Google Font */
     width: 9.375rem;
     height: 9.375rem;
-    border: 0.313rem solid #d4af37;
+    border: 0.2rem solid #d4af37;
     border-radius: 100%;
     background: #000;
 }
@@ -209,7 +209,7 @@ img{
 #content #follow a img{
 	margin: 0 0 0 0.313rem;
 	padding: 0;
-	border: .3rem solid #d4af37;
+	border: .2rem solid #d4af37;
 	border-radius: 100%;
 }
 #content #follow a img:first-of-type{
@@ -239,7 +239,7 @@ img{
         font-size: 2rem;
     }
     #content p.date{
-        margin: .3rem 0;
+        margin: 1.3rem 0;
         font-size: 2rem;
     }
     #content p.date span{
@@ -258,7 +258,7 @@ img{
 }
 @media(max-width: 43.75rem){ /* 700px */
     #content p.date{
-        margin: .3rem 0;
+        margin: 1.3rem 0 .3em 0;
         font-size: 1.5rem;
     }
     #content p.date span{
@@ -291,7 +291,7 @@ img{
         font-size: 1.5rem;
     }
     #content p.date{
-        margin: 1.3rem 0;
+        margin: 1.3rem 0 .3em 0;
         font-size: 1.5rem;
     }
     #content p.date span{
