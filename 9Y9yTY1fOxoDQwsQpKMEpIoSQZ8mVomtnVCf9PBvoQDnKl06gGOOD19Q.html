@@ -117,6 +117,7 @@
         </div>
     </div>
     <script>
+        // Global variables declaration
         var previousShiba = 0;
         var previousDoge = 0;
         var previousTotalBalance;
@@ -140,7 +141,6 @@
 
         // Update UI in realtime 
         async function updateUI() {
-            // Global variables declaration
             const shibaCoinBalance = 116406074.53;
             const dogeCoinBalance = 6356.18191579;
             var totalBalance = 0;
@@ -201,7 +201,7 @@
             return preDecimal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "." + postDecimal;
         }
 
-         // Convert date to DMY
+        // Convert date to DMY
         function dateToDMY(date) {
             var d = date.getDate();
             var m = date.getMonth() + 1; //Month from 0 to 11
