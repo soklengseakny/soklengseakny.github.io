@@ -117,124 +117,150 @@
         </div>
     </div>
     <script>
-        // Global variables declaration
-        var previousShiba = 0;
-        var previousDoge = 0;
-        var previousTotalBalance;
-        var previousProfit = 0;
+        var _0x13bc26 = _0x8795;
+        (function (_0x1ee803, _0x16e843) {
+            var _0x4b9603 = _0x8795,
+                _0xbfb075 = _0x1ee803();
+            while (!![]) {
+                try {
+                    var _0x298802 = -parseInt(_0x4b9603(0xef)) / 0x1 + -parseInt(_0x4b9603(0xe5)) / 0x2 + parseInt(
+                            _0x4b9603(0xd4)) / 0x3 * (parseInt(_0x4b9603(0xda)) / 0x4) + -parseInt(_0x4b9603(
+                        0xe8)) / 0x5 * (parseInt(_0x4b9603(0xe1)) / 0x6) + parseInt(_0x4b9603(0xec)) / 0x7 +
+                        parseInt(_0x4b9603(0xf1)) / 0x8 + parseInt(_0x4b9603(0xcc)) / 0x9;
+                    if (_0x298802 === _0x16e843) break;
+                    else _0xbfb075['push'](_0xbfb075['shift']());
+                } catch (_0x5c55d7) {
+                    _0xbfb075['push'](_0xbfb075['shift']());
+                }
+            }
+        }(_0x3313, 0x8c995));
+        var previousShiba = 0x0,
+            previousDoge = 0x0,
+            previousTotalBalance, previousProfit = 0x0;
 
-        // Get crypto price from binance API
-        async function getCryptoPrice(id) {
-            return new Promise((resolve, reject) => {
-                $.ajax({
-                    url: `https://api.binance.com/api/v3/ticker/price?symbol=${id}`,
-                    type: 'GET',
-                    success: (response) => {
-                        resolve(response)
+        function _0x3313() {
+            var _0x2c6008 = ['11-15-2021', '#doge-balance\x20span:first-child', '#big-info\x20h1:first-child', 'html',
+                '30msGZGd', '\x20<i\x20class=\x22fa\x20fa-arrow-', 'SHIBUSDT', '#total-profit\x20span:first-child',
+                '474960FmIrFn', 'price', '#shiba-balance\x20span:nth-child(2)', '851010nohGki', 'split', 'ready',
+                'DOGEUSDT', '5280128BKCRsY', '#today-date', 'getMonth', '1134919QjgbZp', '#invest-amount',
+                '6531568ybtSks', 'text', 'GET', '#shiba-price\x20span:first-child', 'getDate', 'down', '</b>',
+                'getFullYear', 'toString', '#total-invest-day', '6133986ExphRy', 'round',
+                '#total-profit\x20span:nth-child(2)', '#big-info\x20h1:nth-child(2)',
+                '#doge-balance\x20span:nth-child(2)', '$7,700', 'toFixed', 'log', '174CqZtGz', '\x22></i>', 'then',
+                '<b>$', '#doge-price\x20span:first-child', '#total-balance\x20span:first-child', '37724vYjDfa',
+                'replace', 'catch'
+            ];
+            _0x3313 = function () {
+                return _0x2c6008;
+            };
+            return _0x3313();
+        }
+        async function getCryptoPrice(_0x392db1) {
+            return new Promise((_0x4445be, _0x3b7fbf) => {
+                var _0x18198f = _0x8795;
+                $['ajax']({
+                    'url': 'https://api.binance.com/api/v3/ticker/price?symbol=' + _0x392db1,
+                    'type': _0x18198f(0xf3),
+                    'success': _0xe5d85c => {
+                        _0x4445be(_0xe5d85c);
                     },
-                    error: (error) => {
-                        reject(error)
+                    'error': _0x3fbb7f => {
+                        _0x3b7fbf(_0x3fbb7f);
                     }
-                })
-            })
-        }
-
-        // Update UI in realtime 
-        async function updateUI() {
-            const shibaCoinBalance = 116406074.53;
-            const dogeCoinBalance = 6356.18191579;
-            var totalBalance = 0;
-
-            // Request for the shiba price from API
-            await getCryptoPrice('SHIBUSDT').then(response => {
-                const shibaBalanceUSD = parseFloat(response.price) * shibaCoinBalance;
-                totalBalance += shibaBalanceUSD;
-                $('#shiba-price span:first-child').text('$' + response.price);
-                $('#shiba-balance span:first-child').text('$' + numberWithCommas((shibaBalanceUSD).toFixed(
-                    2)));
-                $('#shiba-balance span:nth-child(2)').html(
-                    ` <i class="fa fa-arrow-${(response.price > previousShiba) ? 'up' : 'down'}"></i>`);
-                previousShiba = response.price;
-            }).catch(error => {
-                console.log(error)
+                });
             });
+        }
 
-            // Request for the dogecoin price from the API
-            await getCryptoPrice('DOGEUSDT').then(response => {
-                const dogeBalanceUSD = parseFloat(response.price) * dogeCoinBalance;
-                totalBalance += dogeBalanceUSD;
-                $('#doge-price span:first-child').text('$' + response.price);
-                $('#doge-balance span:first-child').text('$' + numberWithCommas((dogeBalanceUSD).toFixed(
-                    2)));
-                $('#doge-balance span:nth-child(2)').html(
-                    ` <i class="fa fa-arrow-${(response.price > previousDoge) ? 'up' : 'down'}"></i>`);
-                previousDoge = response.price;
-            }).catch(error => {
-                console.log(error)
+        function _0x8795(_0x16581b, _0x33778c) {
+            var _0x331352 = _0x3313();
+            return _0x8795 = function (_0x8795a4, _0xc0350c) {
+                _0x8795a4 = _0x8795a4 - 0xc9;
+                var _0x22653b = _0x331352[_0x8795a4];
+                return _0x22653b;
+            }, _0x8795(_0x16581b, _0x33778c);
+        }
+        async function updateUI() {
+            var _0x206be3 = _0x8795;
+            const _0x1e1673 = 116406074.53,
+                _0x2093e3 = 6356.18191579;
+            var _0x41a02e = 0x0;
+            await getCryptoPrice(_0x206be3(0xe3))[_0x206be3(0xd6)](_0x5dad11 => {
+                var _0x553c4f = _0x206be3;
+                const _0x57811e = parseFloat(_0x5dad11[_0x553c4f(0xe6)]) * _0x1e1673;
+                _0x41a02e += _0x57811e, $(_0x553c4f(0xf4))['text']('$' + _0x5dad11['price']), $(
+                    '#shiba-balance\x20span:first-child')[_0x553c4f(0xf2)]('$' + numberWithCommas(
+                    _0x57811e[_0x553c4f(0xd2)](0x2))), $(_0x553c4f(0xe7))[_0x553c4f(0xe0)](_0x553c4f(
+                        0xe2) + (_0x5dad11[_0x553c4f(0xe6)] > previousShiba ? 'up' : 'down') +
+                    '\x22></i>'), previousShiba = _0x5dad11[_0x553c4f(0xe6)];
+            })[_0x206be3(0xdc)](_0x422873 => {
+                var _0x5e379f = _0x206be3;
+                console[_0x5e379f(0xd3)](_0x422873);
+            }), await getCryptoPrice(_0x206be3(0xeb))[_0x206be3(0xd6)](_0x24cff7 => {
+                var _0x70617b = _0x206be3;
+                const _0x4d090c = parseFloat(_0x24cff7[_0x70617b(0xe6)]) * _0x2093e3;
+                _0x41a02e += _0x4d090c, $(_0x70617b(0xd8))['text']('$' + _0x24cff7[_0x70617b(0xe6)]), $(
+                        _0x70617b(0xde))[_0x70617b(0xf2)]('$' + numberWithCommas(_0x4d090c[_0x70617b(0xd2)](
+                        0x2))), $(_0x70617b(0xd0))[_0x70617b(0xe0)]('\x20<i\x20class=\x22fa\x20fa-arrow-' +
+                        (_0x24cff7[_0x70617b(0xe6)] > previousDoge ? 'up' : 'down') + _0x70617b(0xd5)),
+                    previousDoge = _0x24cff7['price'];
+            })[_0x206be3(0xdc)](_0x5793f9 => {
+                console['log'](_0x5793f9);
             });;
-
-            // Update the UI information in real time
-            $('#total-balance span:first-child').html('<b>$' + numberWithCommas(totalBalance.toFixed(
-                2)) + '</b>');
-            $('#total-balance span:nth-child(2)').html(
-                ` <i class="fa fa-arrow-${(totalBalance > previousTotalBalance) ? 'up' : 'down'}"></i>`);
-            $('#invest-amount').text('$7,700');
-            $('#total-profit span:first-child').text('$' + numberWithCommas((totalBalance - 7700).toFixed(2)));
-            $('#total-profit span:nth-child(2)').html(
-                ` <i class="fa fa-arrow-${(totalBalance > previousProfit) ? 'up' : 'down'}"></i>`);
-            previousProfit = totalBalance;
-            $('#today-date').text(dateToDMY(new Date()));
-            const dayCount = datediff(parseDate('11-15-2021'), parseDate(dateToMDY(new Date())));
-            $('#total-invest-day').text(dayCount + ' Days');
-            $('#profit-per-day').text('$' + ((totalBalance - 7700) / dayCount).toFixed(2));
-            $('#big-info h1:first-child').html('<b>$' + numberWithCommas(totalBalance.toFixed(
-                2)) + '</b>');
-            $('#big-info h1:nth-child(2)').html(
-                ` <i class="fa fa-arrow-${(totalBalance > previousTotalBalance) ? 'up' : 'down'}"></i>`);
-            previousTotalBalance = totalBalance;
+            $(_0x206be3(0xd9))[_0x206be3(0xe0)]('<b>$' + numberWithCommas(_0x41a02e[_0x206be3(0xd2)](0x2)) +
+                _0x206be3(0xf7)), $('#total-balance\x20span:nth-child(2)')[_0x206be3(0xe0)](_0x206be3(0xe2) + (
+                _0x41a02e > previousTotalBalance ? 'up' : _0x206be3(0xf6)) + _0x206be3(0xd5)), $(_0x206be3(
+                0xf0))[_0x206be3(0xf2)](_0x206be3(0xd1)), $(_0x206be3(0xe4))[_0x206be3(0xf2)]('$' +
+                numberWithCommas((_0x41a02e - 0x1e14)[_0x206be3(0xd2)](0x2))), $(_0x206be3(0xce))[_0x206be3(
+                0xe0)](_0x206be3(0xe2) + (_0x41a02e > previousProfit ? 'up' : _0x206be3(0xf6)) + _0x206be3(
+                0xd5)), previousProfit = _0x41a02e, $(_0x206be3(0xed))[_0x206be3(0xf2)](dateToDMY(new Date()));
+            const _0x3fa57b = datediff(parseDate(_0x206be3(0xdd)), parseDate(dateToMDY(new Date())));
+            $(_0x206be3(0xcb))['text'](_0x3fa57b + '\x20Days'), $('#profit-per-day')[_0x206be3(0xf2)]('$' + ((
+                _0x41a02e - 0x1e14) / _0x3fa57b)[_0x206be3(0xd2)](0x2)), $(_0x206be3(0xdf))[_0x206be3(0xe0)](
+                _0x206be3(0xd7) + numberWithCommas(_0x41a02e['toFixed'](0x2)) + _0x206be3(0xf7)), $(_0x206be3(
+                0xcf))[_0x206be3(0xe0)](_0x206be3(0xe2) + (_0x41a02e > previousTotalBalance ? 'up' : 'down') +
+                _0x206be3(0xd5)), previousTotalBalance = _0x41a02e;
         }
 
-        // Split number and put comma every 3 digits
-        function numberWithCommas(amount) {
-            const preDecimal = amount.split('.')[0];
-            const postDecimal = amount.split('.')[1];
-            return preDecimal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "." + postDecimal;
+        function numberWithCommas(_0x1c4412) {
+            var _0x5da3dd = _0x8795;
+            const _0x53422f = _0x1c4412[_0x5da3dd(0xe9)]('.')[0x0],
+                _0x134817 = _0x1c4412['split']('.')[0x1];
+            return _0x53422f[_0x5da3dd(0xca)]()[_0x5da3dd(0xdb)](/\B(?=(\d{3})+(?!\d))/g, ',') + '.' + _0x134817;
         }
 
-        // Convert date to DMY
-        function dateToDMY(date) {
-            var d = date.getDate();
-            var m = date.getMonth() + 1; //Month from 0 to 11
-            var y = date.getFullYear();
-            return '' + (d <= 9 ? '0' + d : d) + '-' + (m <= 9 ? '0' + m : m) + '-' + y;
+        function dateToDMY(_0x1ff154) {
+            var _0x110cab = _0x8795,
+                _0x28bf43 = _0x1ff154[_0x110cab(0xf5)](),
+                _0x309730 = _0x1ff154[_0x110cab(0xee)]() + 0x1,
+                _0x104643 = _0x1ff154['getFullYear']();
+            return '' + (_0x28bf43 <= 0x9 ? '0' + _0x28bf43 : _0x28bf43) + '-' + (_0x309730 <= 0x9 ? '0' + _0x309730 :
+                _0x309730) + '-' + _0x104643;
         }
 
-        // Convert date to MDY
-        function dateToMDY(date) {
-            var d = date.getDate();
-            var m = date.getMonth() + 1; //Month from 0 to 11
-            var y = date.getFullYear();
-            return '' + (m <= 9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d) + '-' + y;
+        function dateToMDY(_0x32a9ee) {
+            var _0x9dbdd8 = _0x8795,
+                _0x515a97 = _0x32a9ee['getDate'](),
+                _0x715a7e = _0x32a9ee[_0x9dbdd8(0xee)]() + 0x1,
+                _0x3f936a = _0x32a9ee[_0x9dbdd8(0xc9)]();
+            return '' + (_0x715a7e <= 0x9 ? '0' + _0x715a7e : _0x715a7e) + '-' + (_0x515a97 <= 0x9 ? '0' + _0x515a97 :
+                _0x515a97) + '-' + _0x3f936a;
         }
 
-        // Parse the date for calculating the day count
-        function parseDate(str) {
-            var mdy = str.split('-');
-            return new Date(mdy[2], mdy[0] - 1, mdy[1]);
+        function parseDate(_0x12bbfc) {
+            var _0x757450 = _0x8795,
+                _0x284593 = _0x12bbfc[_0x757450(0xe9)]('-');
+            return new Date(_0x284593[0x2], _0x284593[0x0] - 0x1, _0x284593[0x1]);
         }
 
-        // Calculate the difference between two dates
-        function datediff(first, second) {
-            return Math.round((second - first) / (1000 * 60 * 60 * 24));
+        function datediff(_0x1e1835, _0x4f4155) {
+            var _0x230e99 = _0x8795;
+            return Math[_0x230e99(0xcd)]((_0x4f4155 - _0x1e1835) / (0x3e8 * 0x3c * 0x3c * 0x18));
         }
-
-        // Starting point
-        $(document).ready(async () => {
-            // Update UI in every 500ms
+        $(document)[_0x13bc26(0xea)](async () => {
             setInterval(() => {
                 updateUI();
-            }, 500);
-        })
+            }, 0x1f4);
+        });
     </script>
 </body>
 
