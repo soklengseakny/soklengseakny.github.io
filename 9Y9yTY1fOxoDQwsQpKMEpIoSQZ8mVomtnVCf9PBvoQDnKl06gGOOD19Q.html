@@ -34,6 +34,16 @@
         .fa-arrow-down {
             color: red;
         }
+
+        #big-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #big-total-balance {
+            margin-right: .5em;
+        }
     </style>
 </head>
 
@@ -101,11 +111,18 @@
                 </tr>
             </tbody>
         </table>
+        <div id="big-info">
+            <h1 id="big-total-balance">$0000</h1>
+            <h1></h1>
+        </div>
     </div>
     <script>
         var previousShiba = 0;
         var previousDoge = 0;
+        var previousTotalBalance;
         var previousProfit = 0;
+
+        // Get crypto price from binance API
         async function getCryptoPrice(id) {
             return new Promise((resolve, reject) => {
                 $.ajax({
@@ -121,10 +138,14 @@
             })
         }
 
+        // Update UI in realtime 
         async function updateUI() {
+            // Global variables declaration
             const shibaCoinBalance = 116406074.53;
             const dogeCoinBalance = 6356.18191579;
             var totalBalance = 0;
+
+            // Request for the shiba price from API
             await getCryptoPrice('SHIBUSDT').then(response => {
                 const shibaBalanceUSD = parseFloat(response.price) * shibaCoinBalance;
                 totalBalance += shibaBalanceUSD;
@@ -137,6 +158,8 @@
             }).catch(error => {
                 console.log(error)
             });
+
+            // Request for the dogecoin price from the API
             await getCryptoPrice('DOGEUSDT').then(response => {
                 const dogeBalanceUSD = parseFloat(response.price) * dogeCoinBalance;
                 totalBalance += dogeBalanceUSD;
@@ -145,12 +168,16 @@
                     2)));
                 $('#doge-balance span:nth-child(2)').html(
                     ` <i class="fa fa-arrow-${(response.price > previousDoge) ? 'up' : 'down'}"></i>`);
-                $('#total-balance span:first-child').html('<b>$' + numberWithCommas(totalBalance.toFixed(
-                    2)) + '</b>');
                 previousDoge = response.price;
             }).catch(error => {
                 console.log(error)
             });;
+
+            // Update the UI information in real time
+            $('#total-balance span:first-child').html('<b>$' + numberWithCommas(totalBalance.toFixed(
+                2)) + '</b>');
+            $('#total-balance span:nth-child(2)').html(
+                ` <i class="fa fa-arrow-${(totalBalance > previousTotalBalance) ? 'up' : 'down'}"></i>`);
             $('#invest-amount').text('$7,700');
             $('#total-profit span:first-child').text('$' + numberWithCommas((totalBalance - 7700).toFixed(2)));
             $('#total-profit span:nth-child(2)').html(
@@ -160,14 +187,21 @@
             const dayCount = datediff(parseDate('11-15-2021'), parseDate(dateToMDY(new Date())));
             $('#total-invest-day').text(dayCount + ' Days');
             $('#profit-per-day').text('$' + ((totalBalance - 7700) / dayCount).toFixed(2));
+            $('#big-info h1:first-child').html('<b>$' + numberWithCommas(totalBalance.toFixed(
+                2)) + '</b>');
+            $('#big-info h1:nth-child(2)').html(
+                ` <i class="fa fa-arrow-${(totalBalance > previousTotalBalance) ? 'up' : 'down'}"></i>`);
+            previousTotalBalance = totalBalance;
         }
 
+        // Split number and put comma every 3 digits
         function numberWithCommas(amount) {
             const preDecimal = amount.split('.')[0];
             const postDecimal = amount.split('.')[1];
             return preDecimal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "." + postDecimal;
         }
 
+         // Convert date to DMY
         function dateToDMY(date) {
             var d = date.getDate();
             var m = date.getMonth() + 1; //Month from 0 to 11
@@ -175,6 +209,7 @@
             return '' + (d <= 9 ? '0' + d : d) + '-' + (m <= 9 ? '0' + m : m) + '-' + y;
         }
 
+        // Convert date to MDY
         function dateToMDY(date) {
             var d = date.getDate();
             var m = date.getMonth() + 1; //Month from 0 to 11
@@ -182,16 +217,20 @@
             return '' + (m <= 9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d) + '-' + y;
         }
 
+        // Parse the date for calculating the day count
         function parseDate(str) {
             var mdy = str.split('-');
             return new Date(mdy[2], mdy[0] - 1, mdy[1]);
         }
 
+        // Calculate the difference between two dates
         function datediff(first, second) {
             return Math.round((second - first) / (1000 * 60 * 60 * 24));
         }
 
+        // Starting point
         $(document).ready(async () => {
+            // Update UI in every 500ms
             setInterval(() => {
                 updateUI();
             }, 500);
