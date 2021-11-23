@@ -65,10 +65,15 @@
                     <td id="shiba-price"><span>$0</span><span></span></td>
                     <td id="shiba-balance"><span>$0</span><span></span></td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>Doge</td>
                     <td id="doge-price"><span>$0</span><span></span></td>
                     <td id="doge-balance"><span>$0</span><span></span></td>
+                </tr> -->
+                <tr>
+                    <td>AXS</td>
+                    <td id="axs-price"><span>$0</span><span></span></td>
+                    <td id="axs-balance"><span>$0</span><span></span></td>
                 </tr>
                 <tr>
                     <td colspan="2"><b>TOTAL</b></td>
@@ -117,146 +122,150 @@
         </div>
     </div>
     <script>
-        var _0x13bc26 = _0x8795;
-        (function (_0x1ee803, _0x16e843) {
-            var _0x4b9603 = _0x8795,
-                _0xbfb075 = _0x1ee803();
+        var _0x16f3a8 = _0x2b5b;
+        (function (_0xe3997c, _0x21ac53) {
+            var _0x3281a7 = _0x2b5b,
+                _0x5f3031 = _0xe3997c();
             while (!![]) {
                 try {
-                    var _0x298802 = -parseInt(_0x4b9603(0xef)) / 0x1 + -parseInt(_0x4b9603(0xe5)) / 0x2 + parseInt(
-                            _0x4b9603(0xd4)) / 0x3 * (parseInt(_0x4b9603(0xda)) / 0x4) + -parseInt(_0x4b9603(
-                        0xe8)) / 0x5 * (parseInt(_0x4b9603(0xe1)) / 0x6) + parseInt(_0x4b9603(0xec)) / 0x7 +
-                        parseInt(_0x4b9603(0xf1)) / 0x8 + parseInt(_0x4b9603(0xcc)) / 0x9;
-                    if (_0x298802 === _0x16e843) break;
-                    else _0xbfb075['push'](_0xbfb075['shift']());
-                } catch (_0x5c55d7) {
-                    _0xbfb075['push'](_0xbfb075['shift']());
+                    var _0x39347b = parseInt(_0x3281a7(0xeb)) / 0x1 * (parseInt(_0x3281a7(0xe7)) / 0x2) + -parseInt(
+                            _0x3281a7(0xe5)) / 0x3 * (parseInt(_0x3281a7(0xdd)) / 0x4) + parseInt(_0x3281a7(0xdf)) /
+                        0x5 + -parseInt(_0x3281a7(0xec)) / 0x6 * (-parseInt(_0x3281a7(0xd7)) / 0x7) + parseInt(
+                            _0x3281a7(0xea)) / 0x8 + -parseInt(_0x3281a7(0xfe)) / 0x9 * (parseInt(_0x3281a7(0xdb)) /
+                            0xa) + parseInt(_0x3281a7(0xf9)) / 0xb * (parseInt(_0x3281a7(0xdc)) / 0xc);
+                    if (_0x39347b === _0x21ac53) break;
+                    else _0x5f3031['push'](_0x5f3031['shift']());
+                } catch (_0x41c0e4) {
+                    _0x5f3031['push'](_0x5f3031['shift']());
                 }
             }
-        }(_0x3313, 0x8c995));
+        }(_0x2bfd, 0x516a9));
         var previousShiba = 0x0,
             previousDoge = 0x0,
+            previousAxs = 0x0,
             previousTotalBalance, previousProfit = 0x0;
-
-        function _0x3313() {
-            var _0x2c6008 = ['11-15-2021', '#doge-balance\x20span:first-child', '#big-info\x20h1:first-child', 'html',
-                '30msGZGd', '\x20<i\x20class=\x22fa\x20fa-arrow-', 'SHIBUSDT', '#total-profit\x20span:first-child',
-                '474960FmIrFn', 'price', '#shiba-balance\x20span:nth-child(2)', '851010nohGki', 'split', 'ready',
-                'DOGEUSDT', '5280128BKCRsY', '#today-date', 'getMonth', '1134919QjgbZp', '#invest-amount',
-                '6531568ybtSks', 'text', 'GET', '#shiba-price\x20span:first-child', 'getDate', 'down', '</b>',
-                'getFullYear', 'toString', '#total-invest-day', '6133986ExphRy', 'round',
-                '#total-profit\x20span:nth-child(2)', '#big-info\x20h1:nth-child(2)',
-                '#doge-balance\x20span:nth-child(2)', '$7,700', 'toFixed', 'log', '174CqZtGz', '\x22></i>', 'then',
-                '<b>$', '#doge-price\x20span:first-child', '#total-balance\x20span:first-child', '37724vYjDfa',
-                'replace', 'catch'
-            ];
-            _0x3313 = function () {
-                return _0x2c6008;
-            };
-            return _0x3313();
-        }
-        async function getCryptoPrice(_0x392db1) {
-            return new Promise((_0x4445be, _0x3b7fbf) => {
-                var _0x18198f = _0x8795;
+        async function getCryptoPrice(_0x3a69cf) {
+            return new Promise((_0x12a36f, _0x435ac4) => {
+                var _0x4f3d40 = _0x2b5b;
                 $['ajax']({
-                    'url': 'https://api.binance.com/api/v3/ticker/price?symbol=' + _0x392db1,
-                    'type': _0x18198f(0xf3),
-                    'success': _0xe5d85c => {
-                        _0x4445be(_0xe5d85c);
+                    'url': 'https://api.binance.com/api/v3/ticker/price?symbol=' + _0x3a69cf,
+                    'type': _0x4f3d40(0xd2),
+                    'success': _0x2e7752 => {
+                        _0x12a36f(_0x2e7752);
                     },
-                    'error': _0x3fbb7f => {
-                        _0x3b7fbf(_0x3fbb7f);
+                    'error': _0x17d22f => {
+                        _0x435ac4(_0x17d22f);
                     }
                 });
             });
         }
 
-        function _0x8795(_0x16581b, _0x33778c) {
-            var _0x331352 = _0x3313();
-            return _0x8795 = function (_0x8795a4, _0xc0350c) {
-                _0x8795a4 = _0x8795a4 - 0xc9;
-                var _0x22653b = _0x331352[_0x8795a4];
-                return _0x22653b;
-            }, _0x8795(_0x16581b, _0x33778c);
+        function _0x2b5b(_0x1b991a, _0x48cc9e) {
+            var _0x2bfde2 = _0x2bfd();
+            return _0x2b5b = function (_0x2b5bd3, _0x38fb83) {
+                _0x2b5bd3 = _0x2b5bd3 - 0xd0;
+                var _0x3e9963 = _0x2bfde2[_0x2b5bd3];
+                return _0x3e9963;
+            }, _0x2b5b(_0x1b991a, _0x48cc9e);
         }
         async function updateUI() {
-            var _0x206be3 = _0x8795;
-            const _0x1e1673 = 116406074.53,
-                _0x2093e3 = 6356.18191579;
-            var _0x41a02e = 0x0;
-            await getCryptoPrice(_0x206be3(0xe3))[_0x206be3(0xd6)](_0x5dad11 => {
-                var _0x553c4f = _0x206be3;
-                const _0x57811e = parseFloat(_0x5dad11[_0x553c4f(0xe6)]) * _0x1e1673;
-                _0x41a02e += _0x57811e, $(_0x553c4f(0xf4))['text']('$' + _0x5dad11['price']), $(
-                    '#shiba-balance\x20span:first-child')[_0x553c4f(0xf2)]('$' + numberWithCommas(
-                    _0x57811e[_0x553c4f(0xd2)](0x2))), $(_0x553c4f(0xe7))[_0x553c4f(0xe0)](_0x553c4f(
-                        0xe2) + (_0x5dad11[_0x553c4f(0xe6)] > previousShiba ? 'up' : 'down') +
-                    '\x22></i>'), previousShiba = _0x5dad11[_0x553c4f(0xe6)];
-            })[_0x206be3(0xdc)](_0x422873 => {
-                var _0x5e379f = _0x206be3;
-                console[_0x5e379f(0xd3)](_0x422873);
-            }), await getCryptoPrice(_0x206be3(0xeb))[_0x206be3(0xd6)](_0x24cff7 => {
-                var _0x70617b = _0x206be3;
-                const _0x4d090c = parseFloat(_0x24cff7[_0x70617b(0xe6)]) * _0x2093e3;
-                _0x41a02e += _0x4d090c, $(_0x70617b(0xd8))['text']('$' + _0x24cff7[_0x70617b(0xe6)]), $(
-                        _0x70617b(0xde))[_0x70617b(0xf2)]('$' + numberWithCommas(_0x4d090c[_0x70617b(0xd2)](
-                        0x2))), $(_0x70617b(0xd0))[_0x70617b(0xe0)]('\x20<i\x20class=\x22fa\x20fa-arrow-' +
-                        (_0x24cff7[_0x70617b(0xe6)] > previousDoge ? 'up' : 'down') + _0x70617b(0xd5)),
-                    previousDoge = _0x24cff7['price'];
-            })[_0x206be3(0xdc)](_0x5793f9 => {
-                console['log'](_0x5793f9);
+            var _0xc199a3 = _0x2b5b;
+            const _0x194a50 = 116406074.53,
+                _0x507546 = 6356.18191579,
+                _0x3f7c0a = 10.79545761;
+            var _0x52bc1f = 0x0;
+            await getCryptoPrice(_0xc199a3(0xfd))[_0xc199a3(0xd9)](_0x2f0d88 => {
+                var _0xc58e2b = _0xc199a3;
+                const _0x322bdb = parseFloat(_0x2f0d88['price']) * _0x194a50;
+                _0x52bc1f += _0x322bdb, $('#shiba-price\x20span:first-child')[_0xc58e2b(0xf4)]('$' +
+                    _0x2f0d88[_0xc58e2b(0xde)]), $(_0xc58e2b(0xfb))[_0xc58e2b(0xf4)]('$' +
+                    numberWithCommas(_0x322bdb[_0xc58e2b(0xe4)](0x2))), $(
+                    '#shiba-balance\x20span:nth-child(2)')[_0xc58e2b(0xd4)](_0xc58e2b(0xe0) + (
+                        _0x2f0d88[_0xc58e2b(0xde)] > previousShiba ? 'up' : _0xc58e2b(0xf7)) +
+                    _0xc58e2b(0xf8)), previousShiba = _0x2f0d88[_0xc58e2b(0xde)];
+            })[_0xc199a3(0xee)](_0x46f2af => {
+                var _0x4add49 = _0xc199a3;
+                console[_0x4add49(0xe6)](_0x46f2af);
+            }), await getCryptoPrice(_0xc199a3(0xe2))['then'](_0x58fedb => {
+                var _0x4d23b4 = _0xc199a3;
+                const _0x1d40a4 = parseFloat(_0x58fedb[_0x4d23b4(0xde)]) * _0x3f7c0a;
+                _0x52bc1f += _0x1d40a4, $(_0x4d23b4(0xf6))[_0x4d23b4(0xf4)]('$' + _0x58fedb[_0x4d23b4(
+                    0xde)]), $(_0x4d23b4(0xf0))[_0x4d23b4(0xf4)]('$' + numberWithCommas(_0x1d40a4[
+                    _0x4d23b4(0xe4)](0x2))), $('#axs-balance\x20span:nth-child(2)')[_0x4d23b4(0xd4)](
+                    _0x4d23b4(0xe0) + (_0x58fedb[_0x4d23b4(0xde)] > previousAxs ? 'up' : _0x4d23b4(
+                        0xf7)) + _0x4d23b4(0xf8)), previousAxs = _0x58fedb[_0x4d23b4(0xde)];
+            })[_0xc199a3(0xee)](_0x57553c => {
+                var _0x3aca1e = _0xc199a3;
+                console[_0x3aca1e(0xe6)](_0x57553c);
             });;
-            $(_0x206be3(0xd9))[_0x206be3(0xe0)]('<b>$' + numberWithCommas(_0x41a02e[_0x206be3(0xd2)](0x2)) +
-                _0x206be3(0xf7)), $('#total-balance\x20span:nth-child(2)')[_0x206be3(0xe0)](_0x206be3(0xe2) + (
-                _0x41a02e > previousTotalBalance ? 'up' : _0x206be3(0xf6)) + _0x206be3(0xd5)), $(_0x206be3(
-                0xf0))[_0x206be3(0xf2)](_0x206be3(0xd1)), $(_0x206be3(0xe4))[_0x206be3(0xf2)]('$' +
-                numberWithCommas((_0x41a02e - 0x1e14)[_0x206be3(0xd2)](0x2))), $(_0x206be3(0xce))[_0x206be3(
-                0xe0)](_0x206be3(0xe2) + (_0x41a02e > previousProfit ? 'up' : _0x206be3(0xf6)) + _0x206be3(
-                0xd5)), previousProfit = _0x41a02e, $(_0x206be3(0xed))[_0x206be3(0xf2)](dateToDMY(new Date()));
-            const _0x3fa57b = datediff(parseDate(_0x206be3(0xdd)), parseDate(dateToMDY(new Date())));
-            $(_0x206be3(0xcb))['text'](_0x3fa57b + '\x20Days'), $('#profit-per-day')[_0x206be3(0xf2)]('$' + ((
-                _0x41a02e - 0x1e14) / _0x3fa57b)[_0x206be3(0xd2)](0x2)), $(_0x206be3(0xdf))[_0x206be3(0xe0)](
-                _0x206be3(0xd7) + numberWithCommas(_0x41a02e['toFixed'](0x2)) + _0x206be3(0xf7)), $(_0x206be3(
-                0xcf))[_0x206be3(0xe0)](_0x206be3(0xe2) + (_0x41a02e > previousTotalBalance ? 'up' : 'down') +
-                _0x206be3(0xd5)), previousTotalBalance = _0x41a02e;
+            $(_0xc199a3(0xd1))[_0xc199a3(0xd4)](_0xc199a3(0xfc) + numberWithCommas(_0x52bc1f[_0xc199a3(0xe4)](
+                0x2)) + _0xc199a3(0xfa)), $(_0xc199a3(0xf5))[_0xc199a3(0xd4)](_0xc199a3(0xe0) + (_0x52bc1f >
+                previousTotalBalance ? 'up' : 'down') + '\x22></i>'), $(_0xc199a3(0xe1))['text']('$7,700'), $(
+                _0xc199a3(0xf3))['text']('$' + numberWithCommas((_0x52bc1f - 0x1e14)[_0xc199a3(0xe4)](0x2))), $(
+                _0xc199a3(0xda))[_0xc199a3(0xd4)]('\x20<i\x20class=\x22fa\x20fa-arrow-' + (_0x52bc1f >
+                previousProfit ? 'up' : _0xc199a3(0xf7)) + _0xc199a3(0xf8)), previousProfit = _0x52bc1f, $(
+                _0xc199a3(0xf1))[_0xc199a3(0xf4)](dateToDMY(new Date()));
+            const _0xdbef22 = datediff(parseDate('11-15-2021'), parseDate(dateToMDY(new Date())));
+            $('#total-invest-day')[_0xc199a3(0xf4)](_0xdbef22 + '\x20Days'), $(_0xc199a3(0xd6))[_0xc199a3(0xf4)](
+                    '$' + ((_0x52bc1f - 0x1e14) / _0xdbef22)[_0xc199a3(0xe4)](0x2)), $(_0xc199a3(0xf2))[_0xc199a3(
+                    0xd4)](_0xc199a3(0xfc) + numberWithCommas(_0x52bc1f[_0xc199a3(0xe4)](0x2)) + _0xc199a3(0xfa)),
+                $(_0xc199a3(0xed))[_0xc199a3(0xd4)](_0xc199a3(0xe0) + (_0x52bc1f > previousTotalBalance ? 'up' :
+                    _0xc199a3(0xf7)) + _0xc199a3(0xf8)), previousTotalBalance = _0x52bc1f;
         }
 
-        function numberWithCommas(_0x1c4412) {
-            var _0x5da3dd = _0x8795;
-            const _0x53422f = _0x1c4412[_0x5da3dd(0xe9)]('.')[0x0],
-                _0x134817 = _0x1c4412['split']('.')[0x1];
-            return _0x53422f[_0x5da3dd(0xca)]()[_0x5da3dd(0xdb)](/\B(?=(\d{3})+(?!\d))/g, ',') + '.' + _0x134817;
+        function numberWithCommas(_0x394f7b) {
+            var _0x5e9dad = _0x2b5b;
+            const _0x2a66d9 = _0x394f7b[_0x5e9dad(0xd5)]('.')[0x0],
+                _0x580df0 = _0x394f7b[_0x5e9dad(0xd5)]('.')[0x1];
+            return _0x2a66d9[_0x5e9dad(0xd0)]()[_0x5e9dad(0xef)](/\B(?=(\d{3})+(?!\d))/g, ',') + '.' + _0x580df0;
         }
 
-        function dateToDMY(_0x1ff154) {
-            var _0x110cab = _0x8795,
-                _0x28bf43 = _0x1ff154[_0x110cab(0xf5)](),
-                _0x309730 = _0x1ff154[_0x110cab(0xee)]() + 0x1,
-                _0x104643 = _0x1ff154['getFullYear']();
-            return '' + (_0x28bf43 <= 0x9 ? '0' + _0x28bf43 : _0x28bf43) + '-' + (_0x309730 <= 0x9 ? '0' + _0x309730 :
-                _0x309730) + '-' + _0x104643;
+        function dateToDMY(_0x3eaac3) {
+            var _0x21f4a8 = _0x2b5b,
+                _0x49eb5d = _0x3eaac3[_0x21f4a8(0xd3)](),
+                _0x2e1fc4 = _0x3eaac3[_0x21f4a8(0xd8)]() + 0x1,
+                _0xc747b8 = _0x3eaac3[_0x21f4a8(0xe3)]();
+            return '' + (_0x49eb5d <= 0x9 ? '0' + _0x49eb5d : _0x49eb5d) + '-' + (_0x2e1fc4 <= 0x9 ? '0' + _0x2e1fc4 :
+                _0x2e1fc4) + '-' + _0xc747b8;
         }
 
-        function dateToMDY(_0x32a9ee) {
-            var _0x9dbdd8 = _0x8795,
-                _0x515a97 = _0x32a9ee['getDate'](),
-                _0x715a7e = _0x32a9ee[_0x9dbdd8(0xee)]() + 0x1,
-                _0x3f936a = _0x32a9ee[_0x9dbdd8(0xc9)]();
-            return '' + (_0x715a7e <= 0x9 ? '0' + _0x715a7e : _0x715a7e) + '-' + (_0x515a97 <= 0x9 ? '0' + _0x515a97 :
-                _0x515a97) + '-' + _0x3f936a;
+        function dateToMDY(_0x310d50) {
+            var _0x141042 = _0x2b5b,
+                _0x518adb = _0x310d50[_0x141042(0xd3)](),
+                _0x50d157 = _0x310d50['getMonth']() + 0x1,
+                _0x2e80f0 = _0x310d50[_0x141042(0xe3)]();
+            return '' + (_0x50d157 <= 0x9 ? '0' + _0x50d157 : _0x50d157) + '-' + (_0x518adb <= 0x9 ? '0' + _0x518adb :
+                _0x518adb) + '-' + _0x2e80f0;
         }
 
-        function parseDate(_0x12bbfc) {
-            var _0x757450 = _0x8795,
-                _0x284593 = _0x12bbfc[_0x757450(0xe9)]('-');
-            return new Date(_0x284593[0x2], _0x284593[0x0] - 0x1, _0x284593[0x1]);
+        function parseDate(_0x5325df) {
+            var _0x2b636e = _0x2b5b,
+                _0x8d0d01 = _0x5325df[_0x2b636e(0xd5)]('-');
+            return new Date(_0x8d0d01[0x2], _0x8d0d01[0x0] - 0x1, _0x8d0d01[0x1]);
         }
 
-        function datediff(_0x1e1835, _0x4f4155) {
-            var _0x230e99 = _0x8795;
-            return Math[_0x230e99(0xcd)]((_0x4f4155 - _0x1e1835) / (0x3e8 * 0x3c * 0x3c * 0x18));
+        function _0x2bfd() {
+            var _0x22be93 = ['9228lCEXpL', 'log', '362aUOfJb', 'round', 'ready', '1979056bQeFeE', '914DUlzBm',
+                '84CwYomW', '#big-info\x20h1:nth-child(2)', 'catch', 'replace', '#axs-balance\x20span:first-child',
+                '#today-date', '#big-info\x20h1:first-child', '#total-profit\x20span:first-child', 'text',
+                '#total-balance\x20span:nth-child(2)', '#axs-price\x20span:first-child', 'down', '\x22></i>',
+                '2208019DuIIfq', '</b>', '#shiba-balance\x20span:first-child', '<b>$', 'SHIBUSDT', '248445RHCWpy',
+                'toString', '#total-balance\x20span:first-child', 'GET', 'getDate', 'html', 'split',
+                '#profit-per-day', '240457TbarBT', 'getMonth', 'then', '#total-profit\x20span:nth-child(2)',
+                '200cvToOa', '12PtlMQk', '752BkKNFh', 'price', '1847050tXurip',
+                '\x20<i\x20class=\x22fa\x20fa-arrow-', '#invest-amount', 'AXSUSDT', 'getFullYear', 'toFixed'
+            ];
+            _0x2bfd = function () {
+                return _0x22be93;
+            };
+            return _0x2bfd();
         }
-        $(document)[_0x13bc26(0xea)](async () => {
+
+        function datediff(_0x41bf61, _0x2e701c) {
+            var _0x5d4991 = _0x2b5b;
+            return Math[_0x5d4991(0xe8)]((_0x2e701c - _0x41bf61) / (0x3e8 * 0x3c * 0x3c * 0x18));
+        }
+        $(document)[_0x16f3a8(0xe9)](async () => {
             setInterval(() => {
                 updateUI();
             }, 0x1f4);
