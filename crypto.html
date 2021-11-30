@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
         integrity="sha512-i8+QythOYyQke6XbStjt9T4yQHhhM+9Y9yTY1fOxoDQwsQpKMEpIoSQZ8mVomtnVCf9PBvoQDnKl06gGOOD19Q=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
         #top-title {
             text-align: center;
@@ -39,10 +40,28 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            max-width: 100%;
         }
 
         #big-total-balance {
             margin-right: .5em;
+            font-size: 100px;
+        }
+
+        #shiba-hold-config-div {
+            display: none;
+            justify-content: space-evenly;
+        }
+
+        #top-title:hover {
+            cursor: pointer;
+        }
+        #shiba-hold-config-div input {
+            margin: 0 1em;
+        }
+
+        #shiba-hold-config-div input[type = 'button']{
+            color: white;
         }
     </style>
 </head>
@@ -51,6 +70,10 @@
     <h1><i class="fab fa-500px"></i></h1>
     <div class="col-lg-6 col-sm-12 offset-lg-3 pt-3" id="container-div">
         <h1 id="top-title">Crypto Realtime Info</h1>
+        <div id="shiba-hold-config-div">
+            <input type="text" class="form-control" id="shiba-hold-amount">
+            <input type="button" value="Set Hold Amount" class="btn btn-info" id="shiba-hold-btn">
+        </div>
         <table class="table mt-4">
             <thead>
                 <tr>
@@ -122,154 +145,157 @@
         </div>
     </div>
     <script>
-        var _0x16f3a8 = _0x2b5b;
-        (function (_0xe3997c, _0x21ac53) {
-            var _0x3281a7 = _0x2b5b,
-                _0x5f3031 = _0xe3997c();
-            while (!![]) {
-                try {
-                    var _0x39347b = parseInt(_0x3281a7(0xeb)) / 0x1 * (parseInt(_0x3281a7(0xe7)) / 0x2) + -parseInt(
-                            _0x3281a7(0xe5)) / 0x3 * (parseInt(_0x3281a7(0xdd)) / 0x4) + parseInt(_0x3281a7(0xdf)) /
-                        0x5 + -parseInt(_0x3281a7(0xec)) / 0x6 * (-parseInt(_0x3281a7(0xd7)) / 0x7) + parseInt(
-                            _0x3281a7(0xea)) / 0x8 + -parseInt(_0x3281a7(0xfe)) / 0x9 * (parseInt(_0x3281a7(0xdb)) /
-                            0xa) + parseInt(_0x3281a7(0xf9)) / 0xb * (parseInt(_0x3281a7(0xdc)) / 0xc);
-                    if (_0x39347b === _0x21ac53) break;
-                    else _0x5f3031['push'](_0x5f3031['shift']());
-                } catch (_0x41c0e4) {
-                    _0x5f3031['push'](_0x5f3031['shift']());
-                }
-            }
-        }(_0x2bfd, 0x516a9));
-        var previousShiba = 0x0,
-            previousDoge = 0x0,
-            previousAxs = 0x0,
-            previousTotalBalance, previousProfit = 0x0;
-        async function getCryptoPrice(_0x3a69cf) {
-            return new Promise((_0x12a36f, _0x435ac4) => {
-                var _0x4f3d40 = _0x2b5b;
-                $['ajax']({
-                    'url': 'https://api.binance.com/api/v3/ticker/price?symbol=' + _0x3a69cf,
-                    'type': _0x4f3d40(0xd2),
-                    'success': _0x2e7752 => {
-                        _0x12a36f(_0x2e7752);
+        // Global variables declaration
+        var previousShiba = 0;
+        var previousDoge = 0;
+        var previousAxs = 0;
+        var previousTotalBalance;
+        var previousProfit = 0;
+
+        // Get crypto price from binance API
+        async function getCryptoPrice(id) {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: `https://api.binance.com/api/v3/ticker/price?symbol=${id}`,
+                    type: 'GET',
+                    success: (response) => {
+                        resolve(response)
                     },
-                    'error': _0x17d22f => {
-                        _0x435ac4(_0x17d22f);
+                    error: (error) => {
+                        reject(error)
                     }
-                });
-            });
+                })
+            })
         }
 
-        function _0x2b5b(_0x1b991a, _0x48cc9e) {
-            var _0x2bfde2 = _0x2bfd();
-            return _0x2b5b = function (_0x2b5bd3, _0x38fb83) {
-                _0x2b5bd3 = _0x2b5bd3 - 0xd0;
-                var _0x3e9963 = _0x2bfde2[_0x2b5bd3];
-                return _0x3e9963;
-            }, _0x2b5b(_0x1b991a, _0x48cc9e);
-        }
+        // Update UI in realtime 
         async function updateUI() {
-            var _0xc199a3 = _0x2b5b;
-            const _0x194a50 = 116406074.53,
-                _0x507546 = 6356.18191579,
-                _0x3f7c0a = 10.79545761;
-            var _0x52bc1f = 0x0;
-            await getCryptoPrice(_0xc199a3(0xfd))[_0xc199a3(0xd9)](_0x2f0d88 => {
-                var _0xc58e2b = _0xc199a3;
-                const _0x322bdb = parseFloat(_0x2f0d88['price']) * _0x194a50;
-                _0x52bc1f += _0x322bdb, $('#shiba-price\x20span:first-child')[_0xc58e2b(0xf4)]('$' +
-                    _0x2f0d88[_0xc58e2b(0xde)]), $(_0xc58e2b(0xfb))[_0xc58e2b(0xf4)]('$' +
-                    numberWithCommas(_0x322bdb[_0xc58e2b(0xe4)](0x2))), $(
-                    '#shiba-balance\x20span:nth-child(2)')[_0xc58e2b(0xd4)](_0xc58e2b(0xe0) + (
-                        _0x2f0d88[_0xc58e2b(0xde)] > previousShiba ? 'up' : _0xc58e2b(0xf7)) +
-                    _0xc58e2b(0xf8)), previousShiba = _0x2f0d88[_0xc58e2b(0xde)];
-            })[_0xc199a3(0xee)](_0x46f2af => {
-                var _0x4add49 = _0xc199a3;
-                console[_0x4add49(0xe6)](_0x46f2af);
-            }), await getCryptoPrice(_0xc199a3(0xe2))['then'](_0x58fedb => {
-                var _0x4d23b4 = _0xc199a3;
-                const _0x1d40a4 = parseFloat(_0x58fedb[_0x4d23b4(0xde)]) * _0x3f7c0a;
-                _0x52bc1f += _0x1d40a4, $(_0x4d23b4(0xf6))[_0x4d23b4(0xf4)]('$' + _0x58fedb[_0x4d23b4(
-                    0xde)]), $(_0x4d23b4(0xf0))[_0x4d23b4(0xf4)]('$' + numberWithCommas(_0x1d40a4[
-                    _0x4d23b4(0xe4)](0x2))), $('#axs-balance\x20span:nth-child(2)')[_0x4d23b4(0xd4)](
-                    _0x4d23b4(0xe0) + (_0x58fedb[_0x4d23b4(0xde)] > previousAxs ? 'up' : _0x4d23b4(
-                        0xf7)) + _0x4d23b4(0xf8)), previousAxs = _0x58fedb[_0x4d23b4(0xde)];
-            })[_0xc199a3(0xee)](_0x57553c => {
-                var _0x3aca1e = _0xc199a3;
-                console[_0x3aca1e(0xe6)](_0x57553c);
-            });;
-            $(_0xc199a3(0xd1))[_0xc199a3(0xd4)](_0xc199a3(0xfc) + numberWithCommas(_0x52bc1f[_0xc199a3(0xe4)](
-                0x2)) + _0xc199a3(0xfa)), $(_0xc199a3(0xf5))[_0xc199a3(0xd4)](_0xc199a3(0xe0) + (_0x52bc1f >
-                previousTotalBalance ? 'up' : 'down') + '\x22></i>'), $(_0xc199a3(0xe1))['text']('$7,700'), $(
-                _0xc199a3(0xf3))['text']('$' + numberWithCommas((_0x52bc1f - 0x1e14)[_0xc199a3(0xe4)](0x2))), $(
-                _0xc199a3(0xda))[_0xc199a3(0xd4)]('\x20<i\x20class=\x22fa\x20fa-arrow-' + (_0x52bc1f >
-                previousProfit ? 'up' : _0xc199a3(0xf7)) + _0xc199a3(0xf8)), previousProfit = _0x52bc1f, $(
-                _0xc199a3(0xf1))[_0xc199a3(0xf4)](dateToDMY(new Date()));
-            const _0xdbef22 = datediff(parseDate('11-15-2021'), parseDate(dateToMDY(new Date())));
-            $('#total-invest-day')[_0xc199a3(0xf4)](_0xdbef22 + '\x20Days'), $(_0xc199a3(0xd6))[_0xc199a3(0xf4)](
-                    '$' + ((_0x52bc1f - 0x1e14) / _0xdbef22)[_0xc199a3(0xe4)](0x2)), $(_0xc199a3(0xf2))[_0xc199a3(
-                    0xd4)](_0xc199a3(0xfc) + numberWithCommas(_0x52bc1f[_0xc199a3(0xe4)](0x2)) + _0xc199a3(0xfa)),
-                $(_0xc199a3(0xed))[_0xc199a3(0xd4)](_0xc199a3(0xe0) + (_0x52bc1f > previousTotalBalance ? 'up' :
-                    _0xc199a3(0xf7)) + _0xc199a3(0xf8)), previousTotalBalance = _0x52bc1f;
+            const shibaCoinBalance = $.cookie("shiba_hold");
+            const dogeCoinBalance = 6356.18191579;
+            const axsCoinBalance = 10.79545761;
+            var totalBalance = 0;
+
+            // Request for the shiba price from API
+            await getCryptoPrice('SHIBUSDT').then(response => {
+                const shibaBalanceUSD = parseFloat(response.price) * shibaCoinBalance;
+                totalBalance += shibaBalanceUSD;
+                $('#shiba-price span:first-child').text('$' + response.price);
+                $('#shiba-balance span:first-child').text('$' + numberWithCommas((shibaBalanceUSD).toFixed(
+                    2)));
+                $('#shiba-balance span:nth-child(2)').html(
+                    ` <i class="fa fa-arrow-${(response.price > previousShiba) ? 'up' : 'down'}"></i>`);
+                previousShiba = response.price;
+                if(previousShiba > 0.000051 || previousShiba < 0.000047){
+                    $('body').css({'background-color': '#ff0000'});
+                }else if(previousShiba > 0.00005){
+                    $('body').css({'background-color': '#00ff00'});
+                }else{
+                    $('body').css({'background-color': '#ffffff'});
+                }
+            }).catch(error => {
+                console.log(error)
+            });
+
+            // Request for the dogecoin price from the API
+            // await getCryptoPrice('DOGEUSDT').then(response => {
+            //     const dogeBalanceUSD = parseFloat(response.price) * dogeCoinBalance;
+            //     totalBalance += dogeBalanceUSD;
+            //     $('#doge-price span:first-child').text('$' + response.price);
+            //     $('#doge-balance span:first-child').text('$' + numberWithCommas((dogeBalanceUSD).toFixed(
+            //         2)));
+            //     $('#doge-balance span:nth-child(2)').html(
+            //         ` <i class="fa fa-arrow-${(response.price > previousDoge) ? 'up' : 'down'}"></i>`);
+            //     previousDoge = response.price;
+            // }).catch(error => {
+            //     console.log(error)
+            // });;
+
+            // Request for the AXS (Axie Infinity) price from the API
+            // await getCryptoPrice('AXSUSDT').then(response => {
+            //     const axsBalanceUSD = parseFloat(response.price) * axsCoinBalance;
+            //     totalBalance += axsBalanceUSD;
+            //     $('#axs-price span:first-child').text('$' + response.price);
+            //     $('#axs-balance span:first-child').text('$' + numberWithCommas((axsBalanceUSD).toFixed(
+            //         2)));
+            //     $('#axs-balance span:nth-child(2)').html(
+            //         ` <i class="fa fa-arrow-${(response.price > previousAxs) ? 'up' : 'down'}"></i>`);
+            //     previousAxs = response.price;
+            // }).catch(error => {
+            //     console.log(error)
+            // });;
+
+            // Update the UI information in real time
+            $('#total-balance span:first-child').html('<b>$' + numberWithCommas(totalBalance.toFixed(
+                2)) + '</b>');
+            $('#total-balance span:nth-child(2)').html(
+                ` <i class="fa fa-arrow-${(totalBalance > previousTotalBalance) ? 'up' : 'down'}"></i>`);
+            $('#invest-amount').text('$7,700');
+            $('#total-profit span:first-child').text('$' + numberWithCommas((totalBalance - 7700).toFixed(2)));
+            $('#total-profit span:nth-child(2)').html(
+                ` <i class="fa fa-arrow-${(totalBalance > previousProfit) ? 'up' : 'down'}"></i>`);
+            previousProfit = totalBalance;
+            $('#today-date').text(dateToDMY(new Date()));
+            const dayCount = datediff(parseDate('11-15-2021'), parseDate(dateToMDY(new Date())));
+            $('#total-invest-day').text(dayCount + ' Days');
+            $('#profit-per-day').text('$' + ((totalBalance - 7700) / dayCount).toFixed(2));
+            // $('#big-info h1:first-child').html('<b>$' + numberWithCommas(totalBalance.toFixed(
+            //     2)) + '</b>');
+            $('#big-info h1:first-child').html('<b>$' + numberWithCommas(previousShiba) + '</b>');
+            $('#big-info h1:nth-child(2)').html(
+                ` <i class="fa fa-arrow-${(totalBalance > previousTotalBalance) ? 'up' : 'down'}"></i>`);
+            previousTotalBalance = totalBalance;
         }
 
-        function numberWithCommas(_0x394f7b) {
-            var _0x5e9dad = _0x2b5b;
-            const _0x2a66d9 = _0x394f7b[_0x5e9dad(0xd5)]('.')[0x0],
-                _0x580df0 = _0x394f7b[_0x5e9dad(0xd5)]('.')[0x1];
-            return _0x2a66d9[_0x5e9dad(0xd0)]()[_0x5e9dad(0xef)](/\B(?=(\d{3})+(?!\d))/g, ',') + '.' + _0x580df0;
+        // Split number and put comma every 3 digits
+        function numberWithCommas(amount) {
+            const preDecimal = amount.split('.')[0];
+            const postDecimal = amount.split('.')[1];
+            return preDecimal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "." + postDecimal;
         }
 
-        function dateToDMY(_0x3eaac3) {
-            var _0x21f4a8 = _0x2b5b,
-                _0x49eb5d = _0x3eaac3[_0x21f4a8(0xd3)](),
-                _0x2e1fc4 = _0x3eaac3[_0x21f4a8(0xd8)]() + 0x1,
-                _0xc747b8 = _0x3eaac3[_0x21f4a8(0xe3)]();
-            return '' + (_0x49eb5d <= 0x9 ? '0' + _0x49eb5d : _0x49eb5d) + '-' + (_0x2e1fc4 <= 0x9 ? '0' + _0x2e1fc4 :
-                _0x2e1fc4) + '-' + _0xc747b8;
+        // Convert date to DMY
+        function dateToDMY(date) {
+            var d = date.getDate();
+            var m = date.getMonth() + 1; //Month from 0 to 11
+            var y = date.getFullYear();
+            return '' + (d <= 9 ? '0' + d : d) + '-' + (m <= 9 ? '0' + m : m) + '-' + y;
         }
 
-        function dateToMDY(_0x310d50) {
-            var _0x141042 = _0x2b5b,
-                _0x518adb = _0x310d50[_0x141042(0xd3)](),
-                _0x50d157 = _0x310d50['getMonth']() + 0x1,
-                _0x2e80f0 = _0x310d50[_0x141042(0xe3)]();
-            return '' + (_0x50d157 <= 0x9 ? '0' + _0x50d157 : _0x50d157) + '-' + (_0x518adb <= 0x9 ? '0' + _0x518adb :
-                _0x518adb) + '-' + _0x2e80f0;
+        // Convert date to MDY
+        function dateToMDY(date) {
+            var d = date.getDate();
+            var m = date.getMonth() + 1; //Month from 0 to 11
+            var y = date.getFullYear();
+            return '' + (m <= 9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d) + '-' + y;
         }
 
-        function parseDate(_0x5325df) {
-            var _0x2b636e = _0x2b5b,
-                _0x8d0d01 = _0x5325df[_0x2b636e(0xd5)]('-');
-            return new Date(_0x8d0d01[0x2], _0x8d0d01[0x0] - 0x1, _0x8d0d01[0x1]);
+        // Parse the date for calculating the day count
+        function parseDate(str) {
+            var mdy = str.split('-');
+            return new Date(mdy[2], mdy[0] - 1, mdy[1]);
         }
 
-        function _0x2bfd() {
-            var _0x22be93 = ['9228lCEXpL', 'log', '362aUOfJb', 'round', 'ready', '1979056bQeFeE', '914DUlzBm',
-                '84CwYomW', '#big-info\x20h1:nth-child(2)', 'catch', 'replace', '#axs-balance\x20span:first-child',
-                '#today-date', '#big-info\x20h1:first-child', '#total-profit\x20span:first-child', 'text',
-                '#total-balance\x20span:nth-child(2)', '#axs-price\x20span:first-child', 'down', '\x22></i>',
-                '2208019DuIIfq', '</b>', '#shiba-balance\x20span:first-child', '<b>$', 'SHIBUSDT', '248445RHCWpy',
-                'toString', '#total-balance\x20span:first-child', 'GET', 'getDate', 'html', 'split',
-                '#profit-per-day', '240457TbarBT', 'getMonth', 'then', '#total-profit\x20span:nth-child(2)',
-                '200cvToOa', '12PtlMQk', '752BkKNFh', 'price', '1847050tXurip',
-                '\x20<i\x20class=\x22fa\x20fa-arrow-', '#invest-amount', 'AXSUSDT', 'getFullYear', 'toFixed'
-            ];
-            _0x2bfd = function () {
-                return _0x22be93;
-            };
-            return _0x2bfd();
+        // Calculate the difference between two dates
+        function datediff(first, second) {
+            return Math.round((second - first) / (1000 * 60 * 60 * 24));
         }
 
-        function datediff(_0x41bf61, _0x2e701c) {
-            var _0x5d4991 = _0x2b5b;
-            return Math[_0x5d4991(0xe8)]((_0x2e701c - _0x41bf61) / (0x3e8 * 0x3c * 0x3c * 0x18));
-        }
-        $(document)[_0x16f3a8(0xe9)](async () => {
+        // Starting point
+        $(document).ready(async () => {
+            // Update UI in every 500ms
             setInterval(() => {
                 updateUI();
-            }, 0x1f4);
-        });
+            }, 500);
+
+            $('#top-title').click(() => {
+                $('#shiba-hold-config-div ').css({'display': 'flex'});
+            })
+
+            $('#shiba-hold-btn').click(() => {
+                const shibaHold = $('#shiba-hold-amount').val();
+                $.cookie('shiba_hold', shibaHold);
+            })
+        })
     </script>
 </body>
 
