@@ -176,7 +176,7 @@
             var totalBalance = 0;
 
             // Request for the shiba price from API
-            await getCryptoPrice('SHIBUSDT').then(response => {
+            await getCryptoPrice('REQUSDT').then(response => {
                 const shibaBalanceUSD = parseFloat(response.price) * shibaCoinBalance;
                 totalBalance += shibaBalanceUSD;
                 $('#shiba-price span:first-child').text('$' + response.price);
