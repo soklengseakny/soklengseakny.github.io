@@ -185,9 +185,9 @@
                 $('#shiba-balance span:nth-child(2)').html(
                     ` <i class="fa fa-arrow-${(response.price > previousShiba) ? 'up' : 'down'}"></i>`);
                 previousShiba = response.price;
-                if(previousShiba > 0.6){
+                if(previousShiba > 0.55){
                     $('body').css({'background-color': '#ff0000'});
-                }else if(previousShiba > 0.56){
+                }else if(previousShiba > 0.5){
                     $('body').css({'background-color': '#00ff00'});
                 }else{
                     $('body').css({'background-color': '#ffffff'});
