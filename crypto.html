@@ -171,13 +171,13 @@
         // Update UI in realtime 
         async function updateUI() {
 //             const shibaCoinBalance = $.cookie("shiba_hold");
-            const shibaCoinBalance = 627003;
+            const shibaCoinBalance = 28638;
             const dogeCoinBalance = 6356.18191579;
             const axsCoinBalance = 10.79545761;
             var totalBalance = 0;
 
             // Request for the shiba price from API
-            await getCryptoPrice('HOTUSDT').then(response => {
+            await getCryptoPrice('ZILUSDT').then(response => {
                 const shibaBalanceUSD = parseFloat(response.price) * shibaCoinBalance;
                 totalBalance += shibaBalanceUSD;
                 $('#shiba-price span:first-child').text('$' + response.price);
@@ -186,9 +186,9 @@
                 $('#shiba-balance span:nth-child(2)').html(
                     ` <i class="fa fa-arrow-${(response.price > previousShiba) ? 'up' : 'down'}"></i>`);
                 previousShiba = response.price;
-                if(previousShiba > 0.007){
+                if(previousShiba > 0.154){
                     $('body').css({'background-color': '#ff0000'});
-                }else if(previousShiba > 0.0068){
+                }else if(previousShiba > 0.1525){
                     $('body').css({'background-color': '#00ff00'});
                 }else{
                     $('body').css({'background-color': '#ffffff'});
