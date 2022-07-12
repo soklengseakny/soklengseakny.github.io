@@ -13,8 +13,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
         integrity="sha512-i8+QythOYyQke6XbStjt9T4yQHhhM+9Y9yTY1fOxoDQwsQpKMEpIoSQZ8mVomtnVCf9PBvoQDnKl06gGOOD19Q=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"
+        integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
+        body, body div {
+            background-color: black;
+        }
+
         #top-title {
             text-align: center;
         }
@@ -44,8 +50,35 @@
         }
 
         #big-total-balance {
-            margin-right: .5em;
-            font-size: 100px;
+            /* margin-right: .5em; */
+            font-size: 8em;
+            margin-bottom: 10em;
+            margin-top: 1.5em;
+            color: rgb(78, 78, 78);
+        }
+
+
+
+        @media only screen and (min-width : 320px) {
+            #big-total-balance {
+                font-size: 90px;
+                margin-bottom: 10em;
+                margin-top: 3em;
+                color: rgb(78, 78, 78);
+            }
+
+        }
+
+        @media only screen and (min-width : 1080px)  {
+            #big-total-balance {
+            /* margin-right: .5em; */
+            font-size: 28em;
+            margin-bottom: 10em;
+            margin-top: 0.5em;
+            color: rgb(171, 171, 171);
+        }
+
+
         }
 
         #shiba-hold-config-div {
@@ -56,17 +89,26 @@
         #top-title:hover {
             cursor: pointer;
         }
+
         #shiba-hold-config-div input {
             margin: 0 1em;
         }
 
-        #shiba-hold-config-div input[type = 'button']{
+        #shiba-hold-config-div input[type='button'] {
+            color: white;
+        }
+
+        table tr td {
             color: white;
         }
     </style>
 </head>
 
 <body>
+    <div id="big-info">
+        <h1 id="big-total-balance">$0000</h1>
+        <h1></h1>
+    </div>
     <h1><i class="fab fa-500px"></i></h1>
     <div class="col-lg-6 col-sm-12 offset-lg-3 pt-3" id="container-div">
         <h1 id="top-title">Crypto Realtime Info</h1>
@@ -84,7 +126,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Shiba</td>
+                    <td>DATA</td>
                     <td id="shiba-price"><span>$0</span><span></span></td>
                     <td id="shiba-balance"><span>$0</span><span></span></td>
                 </tr>
@@ -93,11 +135,11 @@
                     <td id="doge-price"><span>$0</span><span></span></td>
                     <td id="doge-balance"><span>$0</span><span></span></td>
                 </tr> -->
-                <tr>
+                <!-- <tr>
                     <td>AXS</td>
                     <td id="axs-price"><span>$0</span><span></span></td>
                     <td id="axs-balance"><span>$0</span><span></span></td>
-                </tr>
+                </tr> -->
                 <tr>
                     <td colspan="2"><b>TOTAL</b></td>
                     <td id="total-balance"><span>$0</span><span></span></td>
@@ -139,10 +181,7 @@
                 </tr>
             </tbody>
         </table>
-        <div id="big-info">
-            <h1 id="big-total-balance">$0000</h1>
-            <h1></h1>
-        </div>
+
     </div>
     <script>
         // Global variables declaration
@@ -170,8 +209,8 @@
 
         // Update UI in realtime 
         async function updateUI() {
-//             const shibaCoinBalance = $.cookie("shiba_hold");
-            const shibaCoinBalance = 47468;
+            const shibaCoinBalance = $.cookie("shiba_hold");
+            // const shibaCoinBalance = 47468;
             const dogeCoinBalance = 6356.18191579;
             const axsCoinBalance = 10.79545761;
             var totalBalance = 0;
@@ -180,18 +219,18 @@
             await getCryptoPrice('DATAUSDT').then(response => {
                 const shibaBalanceUSD = parseFloat(response.price) * shibaCoinBalance;
                 totalBalance += shibaBalanceUSD;
-                $('#shiba-price span:first-child').text('$' + response.price);
+                $('#shiba-price span:first-child').text('$' + parseFloat(response.price).toFixed(6));
                 $('#shiba-balance span:first-child').text('$' + numberWithCommas((shibaBalanceUSD).toFixed(
                     2)));
                 $('#shiba-balance span:nth-child(2)').html(
                     ` <i class="fa fa-arrow-${(response.price > previousShiba) ? 'up' : 'down'}"></i>`);
                 previousShiba = response.price;
-                if(previousShiba > 0.099){
-                    $('body').css({'background-color': '#ff0000'});
-                }else if(previousShiba > 0.0975){
-                    $('body').css({'background-color': '#00ff00'});
-                }else{
-                    $('body').css({'background-color': '#ffffff'});
+                if (previousShiba > 0.099) {
+                    $('body').css({ 'background-color': '#ff0000' });
+                } else if (previousShiba > 0.0975) {
+                    $('body').css({ 'background-color': '#00ff00' });
+                } else {
+                    $('body').css({ 'background-color': '#ffffff' });
                 }
             }).catch(error => {
                 console.log(error)
@@ -230,20 +269,20 @@
                 2)) + '</b>');
             $('#total-balance span:nth-child(2)').html(
                 ` <i class="fa fa-arrow-${(totalBalance > previousTotalBalance) ? 'up' : 'down'}"></i>`);
-            $('#invest-amount').text('$7,700');
-            $('#total-profit span:first-child').text('$' + numberWithCommas((totalBalance - 7700).toFixed(2)));
+            // $('#invest-amount').text('$7,700');
+            // $('#total-profit span:first-child').text('$' + numberWithCommas((totalBalance - 7700).toFixed(2)));
             $('#total-profit span:nth-child(2)').html(
                 ` <i class="fa fa-arrow-${(totalBalance > previousProfit) ? 'up' : 'down'}"></i>`);
             previousProfit = totalBalance;
             $('#today-date').text(dateToDMY(new Date()));
             const dayCount = datediff(parseDate('11-15-2021'), parseDate(dateToMDY(new Date())));
             $('#total-invest-day').text(dayCount + ' Days');
-            $('#profit-per-day').text('$' + ((totalBalance - 7700) / dayCount).toFixed(2));
+            // $('#profit-per-day').text('$' + ((totalBalance - 7700) / dayCount).toFixed(2));
             // $('#big-info h1:first-child').html('<b>$' + numberWithCommas(totalBalance.toFixed(
             //     2)) + '</b>');
-            $('#big-info h1:first-child').html('<b>$' + numberWithCommas(previousShiba) + '</b>');
-            $('#big-info h1:nth-child(2)').html(
-                ` <i class="fa fa-arrow-${(totalBalance > previousTotalBalance) ? 'up' : 'down'}"></i>`);
+            $('#big-info h1:first-child').html('' + parseFloat(numberWithCommas(previousShiba)).toFixed(5) + '</b>');
+            // $('#big-info h1:nth-child(2)').html(
+            //     ` <i class="fa fa-arrow-${(totalBalance > previousTotalBalance) ? 'up' : 'down'}"></i>`);
             previousTotalBalance = totalBalance;
         }
 
@@ -289,7 +328,7 @@
             }, 500);
 
             $('#top-title').click(() => {
-                $('#shiba-hold-config-div ').css({'display': 'flex'});
+                $('#shiba-hold-config-div ').css({ 'display': 'flex' });
             })
 
             $('#shiba-hold-btn').click(() => {
