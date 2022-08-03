@@ -216,7 +216,7 @@
             var totalBalance = 0;
 
             // Request for the shiba price from API
-            await getCryptoPrice('DATAUSDT').then(response => {
+            await getCryptoPrice('PUNDIXUSDT').then(response => {
                 const shibaBalanceUSD = parseFloat(response.price) * shibaCoinBalance;
                 totalBalance += shibaBalanceUSD;
                 $('#shiba-price span:first-child').text('$' + parseFloat(response.price).toFixed(6));
